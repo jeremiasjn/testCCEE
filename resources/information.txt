@@ -1,0 +1,4 @@
+name:jeremiasn
+database:jdbc:mysql://localhost/testccee
+user:root
+password:123456
