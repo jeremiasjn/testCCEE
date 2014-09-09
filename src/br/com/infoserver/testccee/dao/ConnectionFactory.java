@@ -13,31 +13,8 @@ public class ConnectionFactory {
 	String database;
 	String user;
 	String password;
+	String driver;
 	
-	public String getDatabase() {
-		return database;
-	}
-
-	public void setDatabase(String database) {
-		this.database = database;
-	}
-
-	public String getUser() {
-		return user;
-	}
-
-	public void setUser(String user) {
-		this.user = user;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
 	public void readInformation(){
 		
 		try { 
@@ -46,25 +23,25 @@ public class ConnectionFactory {
 			String line = readedFile.readLine();  
 			while (line != null) { 
 				 
-				this.setDatabase ( line.substring(0,line.indexOf(":")).equals("database") ? line.substring(line.indexOf(":")+1,line.length()) : database );
-				this.setUser ( line.substring(0,line.indexOf(":")).equals("user") ? line.substring(line.indexOf(":")+1,line.length()) : user ) ;
-				this.setPassword ( line.substring(0,line.indexOf(":")).equals("password") ? line.substring(line.indexOf(":")+1,line.length()) : password );
+				driver =  line.substring(0,line.indexOf(":")).equals("driver") ? line.substring(line.indexOf(":")+1,line.length()) : driver ;
+				database =  line.substring(0,line.indexOf(":")).equals("database") ? line.substring(line.indexOf(":")+1,line.length()) : database ;
+				user =  line.substring(0,line.indexOf(":")).equals("user") ? line.substring(line.indexOf(":")+1,line.length()) : user  ;
+				password =  line.substring(0,line.indexOf(":")).equals("password") ? line.substring(line.indexOf(":")+1,line.length()) : password ;
 				
 				line = readedFile.readLine();  
 				} 
 			file.close(); 
-			} catch (IOException e) { 
-				System.err.printf("Erro na abertura do arquivo: %s.\n", e.getMessage()); 
-				System.out.println();  
+			} catch (IOException ex) { 
+				ex.printStackTrace();  
 			}						
 		}
 	
 	public Connection getConnection() {
         try {
         	readInformation();
-        	Class.forName("com.mysql.jdbc.Driver");
+        	Class.forName(driver);
             return DriverManager.getConnection(
-            		this.getDatabase(), this.getUser(), this.getPassword());
+            		database, user, password);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {

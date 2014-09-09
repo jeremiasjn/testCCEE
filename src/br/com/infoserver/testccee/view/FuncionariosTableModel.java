@@ -39,7 +39,7 @@ public class FuncionariosTableModel extends AbstractTableModel {
      
     public FuncionariosTableModel(List<Funcionario> lista){ 
        this.linhas = new ArrayList<Funcionario>(lista);
-       ordenarPorSalarioLiquido();  
+       orderByNetSalary();  
     }  
   
     public FuncionariosTableModel() {
@@ -120,81 +120,8 @@ public class FuncionariosTableModel extends AbstractTableModel {
     /* 
      * Implementações particulares: 
      */  
-      
-    public Funcionario getFuncionario(int rowIndex) {  
-        return linhas.get(rowIndex);  
-    }  
-      
-    public void addFuncionario(Funcionario vo) {  
-        linhas.add(vo);  
-        int lastIndex = getRowCount()-1;  
-        fireTableRowsInserted(lastIndex, lastIndex);  
-    }  
-      
-    public void updateFuncionario(Funcionario vo, int index) {  
-        linhas.set(index, vo);  
-        fireTableRowsUpdated(linhas.indexOf(vo), linhas.indexOf(vo));  
-    }  
-      
-    public void removeFuncionario(int rowIndex) {  
-        linhas.remove(rowIndex);  
-        fireTableRowsDeleted(rowIndex, rowIndex);  
-    }  
-      
-    public void removeFuncionario(Funcionario vo) {  
-        linhas.remove(vo);  
-        fireTableRowsDeleted(linhas.indexOf(vo), linhas.indexOf(vo));  
-    }  
-      
-    public void removeFuncionario(List<Funcionario> lista) {  
-        int indice = 0;  
-        for(Funcionario v : lista) {  
-            indice = linhas.indexOf(v);  
-            linhas.remove(v);  
-            fireTableRowsDeleted(indice, indice);  
-        }  
-    }  
-      
-    public void addListaFuncionarios(List<Funcionario> lista) {  
-        int tamanhoAntigo = getRowCount();  
-        linhas.addAll(lista);  
-        fireTableRowsInserted(tamanhoAntigo, getRowCount()-1);  
-    }  
-      
-    public void limpar() {  
-        if(!linhas.isEmpty()) {  
-            linhas.clear();  
-            fireTableDataChanged();  
-        }  
-    }  
-      
-    public boolean isEmpty() {  
-        return linhas.isEmpty();  
-    }  
-      
-//    public void ordenarPorId() {  
-//        Collections.sort(linhas, new Comparator<Funcionario>(){  
-//            
-//            @Override  
-//            public int compare(Funcionario o1, Funcionario o2) {  
-//                return o1.getId().intValue()-o2.getId().intValue();  
-//            }  
-//        });  
-//        fireTableDataChanged();  
-//    }  
-//      
-//    public void ordenarPorNome() {  
-//        Collections.sort(linhas, new Comparator<Funcionario>() {  
-//  
-//            @Override  
-//            public int compare(Funcionario o1, Funcionario o2) {  
-//                return o1.getNomeCliente().compareTo(o2.getNomeCliente());  
-//            }  
-//        });  
-//        fireTableDataChanged();  
-//    }  
-      
-    public void ordenarPorSalarioLiquido() {  
+          
+    public void orderByNetSalary() {  
         Collections.sort(this.linhas, new Comparator<Funcionario>() {  
              
             @Override  

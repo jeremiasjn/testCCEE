@@ -1,4 +1,5 @@
 name:jeremiasn
+driver:com.mysql.jdbc.Driver
 database:jdbc:mysql://localhost:3306/testccee
 user:root
 password:123456

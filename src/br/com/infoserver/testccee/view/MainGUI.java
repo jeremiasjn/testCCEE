@@ -8,8 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.image.BufferedImage;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -31,7 +29,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 import br.com.infoserver.testccee.commons.Constants;
 import br.com.infoserver.testccee.service.FuncionarioService;
 
-public class MainGUIDesktop implements ActionListener, PropertyChangeListener { 
+public class MainGUI implements ActionListener { 
 
 	JPanel cards; 
 
@@ -156,9 +154,8 @@ public class MainGUIDesktop implements ActionListener, PropertyChangeListener {
 				line = readedFile.readLine();  
 				} 
 			file.close(); 
-			} catch (IOException e) { 
-				System.err.printf("Erro na abertura do arquivo: %s.\n", e.getMessage()); 
-				System.out.println();  
+			} catch (IOException ex) { 
+				ex.printStackTrace();  
 			}						
 		}
 	
@@ -173,7 +170,7 @@ public class MainGUIDesktop implements ActionListener, PropertyChangeListener {
 	
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		MainGUIDesktop gui = new MainGUIDesktop();
+		MainGUI gui = new MainGUI();
 		gui.addComponentToPane(frame.getContentPane());
 
 //		ImageIcon icon = new ImageIcon("./resources/testccee.png");
@@ -222,16 +219,4 @@ public class MainGUIDesktop implements ActionListener, PropertyChangeListener {
 			ex.printStackTrace();
 		}
 	}
-
-	@Override
-	public void propertyChange(PropertyChangeEvent arg0) {
-//		if (!done){
-//			progressBar.setString("running...");
-//			progressBar.setIndeterminate(true);
-//		} else {
-//			progressBar.setIndeterminate(false);
-//			done = false;
-//		}
-	}
-
 }
