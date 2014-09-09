@@ -199,7 +199,7 @@ public class FuncionariosTableModel extends AbstractTableModel {
              
             @Override  
             public int compare(Funcionario o1, Funcionario o2) {              	
-            	return Double.compare(o1.getValorSalarioLiquido().doubleValue(),o2.getValorSalarioLiquido().doubleValue());            	  
+            	return Double.compare(o2.getValorSalarioLiquido().doubleValue(),o1.getValorSalarioLiquido().doubleValue());            	  
             }  
         });  
         fireTableDataChanged();  
