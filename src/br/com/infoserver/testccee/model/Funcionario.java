@@ -7,6 +7,8 @@ public class Funcionario {
 	String nomeCliente;
 	
 	Number valorSalarioBruto;
+	
+	Number valorSalarioLiquido;
 
 	public Number getId() {
 		return id;
@@ -24,6 +26,14 @@ public class Funcionario {
 		this.nomeCliente = nomeCliente;
 	}
 
+	public Number getValorSalarioLiquido() {
+		return valorSalarioLiquido;
+	}
+
+	public void setValorSalarioLiquido(Number valorSalarioLiquido) {
+		this.valorSalarioLiquido = valorSalarioLiquido;
+	}
+	
 	public Number getValorSalarioBruto() {
 		return valorSalarioBruto;
 	}
